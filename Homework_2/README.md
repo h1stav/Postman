@@ -24,6 +24,9 @@ pm.test("Body matches string", function () {
     pm.expect(pm.response.text()).to.include("This is the first responce from server!ss");
 });
 ```
+
+Сохраним запрос и запустим тест.
+
 ## result
 
 ![first](https://github.com/h1stav/Postman/assets/83788756/837d3c4e-7137-4c95-9acf-1cb94322ac48)
