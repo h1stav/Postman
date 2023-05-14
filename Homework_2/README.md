@@ -259,10 +259,10 @@ pm.test("Check that the namy parameter has Luky parameters", function () {
 
 **12.** _Проверить, что параметр age имеет значение_ 
 ```
-## result
-
 pm.test("Check that the age parameter has the value", function () {
     pm.expect(resp.family.pets.dog.age).to.eql(4);
 });
 ```
+## result
+
 ![object_info_age4](https://github.com/h1stav/Postman/assets/83788756/8d7fa64d-22d3-4058-921d-e0ac503496e9)
