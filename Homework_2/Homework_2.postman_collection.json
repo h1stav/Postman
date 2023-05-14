@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "bb977b94-f81e-4751-837d-9652c1c7ef27",
+		"name": "Homework_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26782309",
+		"_collection_link": "https://blue-desert-803595.postman.co/workspace/Team-Workspace~e88a5c71-5acb-4e60-8d2d-ccb8b0edb9d0/collection/26782309-bb977b94-f81e-4751-837d-9652c1c7ef27?action=share&creator=26782309&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!ss\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var resp = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Name in the response is equal to name\", function () {\r",
+							"    pm.expect(resp.name).to.eql(\"Denis\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age in the response is equal to age\", function () {\r",
+							"   pm.expect(resp.age).to.eql(\"33\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Salary in the response is equal to salary\", function () {\r",
+							"    pm.expect(resp.salary).to.eql(1000);\r",
+							"});\r",
+							"\r",
+							"var req = request.data;\r",
+							"\r",
+							"pm.test(\"Name in the response is equal to name\", function () {\r",
+							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age in the response is equal to age\", function () {\r",
+							"    pm.expect(resp.age).to.eql(req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Salary in the response is equal to salary\", function () {\r",
+							"    pm.expect(resp.salary).to.eql(Number(req.salary));\r",
+							"});\r",
+							"\r",
+							"console.log(resp.family)\r",
+							"\r",
+							"pm.test(\"U salary 1.5 year in the response is equal to salary *4\", function () {\r",
+							"    pm.expect(resp.family.u_salary_1_5_year).to.eql(req.salary * 4);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Denis",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "33",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "object_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Denis",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "33",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
