@@ -31,6 +31,9 @@ pm.test("Body matches string", function () {
 
 ![first](https://github.com/h1stav/Postman/assets/83788756/837d3c4e-7137-4c95-9acf-1cb94322ac48)
 
+=========================================================================
+
+
 # 2. Запрос /user_info_3
 
 **1.** _Отправить запрос._
@@ -145,3 +148,87 @@ pm.test("U salary 1.5 year in the response is equal to salary *4", function () {
 ## result
 
 ![req salary 4](https://github.com/h1stav/Postman/assets/83788756/e40013a3-bd0f-4e4f-a3c7-99a57a01fcf0)
+
+
+
+=========================================================================
+
+## 3. Запрос /object_info_3
+
+**1.** _Отправить запрос._ 
+
+http://162.55.220.72:5005/object_info_3 
+
+**2.** _Статус код 200_ 
+
+В разделе **Snippets** выбираем `Status code: Code is 200`
+
+
+```
+pm.test("Status code is 200", function () {                          
+    pm.response.to.have.status(200);                     # В Tests отображается написаный код
+});
+```
+
+**3.** _Спарсить response body в json._
+```
+var resp = pm.response.json();
+```
+
+**4.** _Спарсить request._
+```
+var req = pm.request.url.query.toObject ();
+```
+
+**5.** _Проверить, что name в ответе равно name s request (name забрать из request.)_
+```
+pm.test("Name in the response is equal to name request", function () {
+    pm.expect(resp.name).to.eql(req.name);
+});
+```
+
+**6.** _Проверить, что age в ответе равно age s request (age забрать из request.)_
+```
+pm.test("Age in the response is equal to age request", function () {
+    pm.expect(resp.age).to.eql(req.age);
+});
+```
+
+**7.** _Проверить, что salary в ответе равно salary s request (salary забрать из request.)_
+```
+pm.test("Salary in the response is equal to salary request", function() {
+    pm.expect(String(resp.salary)).to.eql(req.salary);
+});
+```
+
+**8.** _Вывести в консоль параметр family из response._
+```
+console.log(resp.family);
+```
+
+**9.** _Проверить, что у параметра dog есть параметры name._
+```
+pm.test("Check that the dog parameter has name parameters", function () {
+    pm.expect(resp.family.pets.dog).to.property("name");
+});
+```
+
+**10.** _Проверить, что у параметра dog есть параметры age._
+```
+pm.test("Check that the namy parameter has Luky parameters", function () {
+    pm.expect(resp.family.pets.dog.name).to.eql('Luky');
+});
+```
+
+**11.** _Проверить, что параметр name имеет значение Luky._
+```
+pm.test("Check that the namy parameter has Luky parameters", function () {
+    pm.expect(resp.family.pets.dog.name).to.eql('Luky');
+});
+```
+**12.** _Проверить, что параметр age имеет значение_ 
+```
+pm.test("Check that the age parameter has the value", function () {
+    pm.expect(resp.family.pets.dog.age).to.eql(4);
+});
+```
