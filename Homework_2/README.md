@@ -239,7 +239,7 @@ pm.test("Check that the dog parameter has name parameters", function () {
 
 **10.** _Проверить, что у параметра dog есть параметры age._
 ```
-pm.test("Check that the namy parameter has Luky parameters", function () {
+pm.test("Check that the dog parameter has age parameters", function () {
     pm.expect(resp.family.pets.dog).to.property("age");
 });
 ```
