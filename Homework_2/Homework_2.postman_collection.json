@@ -20,7 +20,10 @@
 							"\r",
 							"pm.test(\"Body matches string\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!ss\");\r",
-							"});"
+							"});\r",
+							"\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -149,17 +152,29 @@
 							"\r",
 							"var resp = pm.response.json();\r",
 							"\r",
-							"pm.test(\"Name, age and salary in the response is equal to name, age and salary request\", function () {\r",
+							"pm.test(\"Name in the response is equal to name\", function () {\r",
 							"    pm.expect(resp.name).to.eql(\"Denis\");\r",
-							"    pm.expect(resp.age).to.eql(\"33\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age in the response is equal to age\", function () {\r",
+							"   pm.expect(resp.age).to.eql(\"33\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Salary in the response is equal to salary\", function () {\r",
 							"    pm.expect(resp.salary).to.eql(1000);\r",
 							"});\r",
 							"\r",
 							"var req = request.data;\r",
 							"\r",
-							"pm.test(\"Name, age and salary in the response is equal to name, age and salary request\", function () {\r",
+							"pm.test(\"Name in the response is equal to name\", function () {\r",
 							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age in the response is equal to age\", function () {\r",
 							"    pm.expect(resp.age).to.eql(req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Salary in the response is equal to salary\", function () {\r",
 							"    pm.expect(resp.salary).to.eql(Number(req.salary));\r",
 							"});\r",
 							"\r",
@@ -297,6 +312,215 @@
 							"key": "salary",
 							"value": "1000"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "object_info_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var resp = pm.response.json();\r",
+							"\r",
+							"var req = pm.request.url.query.toObject ();\r",
+							"\r",
+							"pm.test(\"Check that the name in the response is equal to name s request\", function () {\r",
+							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the age in the response is equal to age s request\"), function() {\r",
+							"    pm.expect(resp.age).to.eql(req.age);\r",
+							"}\r",
+							"\r",
+							"console.log(req.salary)\r",
+							"console.log(resp.salary)\r",
+							"console.log(resp.salary[0])\r",
+							"console.log(resp.salary[1])\r",
+							"console.log(resp.salary[2])\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check that the 0th element of the salary parameter is equal to salary from reques\"), function() {\r",
+							"    pm.expect(resp.salary[0]).to.eql(req.salary);\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Check that the 1th element of the salary parameter is equal to salary*2 from reques\", function () {\r",
+							"    pm.expect(+resp.salary[1]).to.eql(req.salary*2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the 2th element of the salary parameter is equal to salary*3 from requese\", function () {\r",
+							"    pm.expect(+resp.salary[2]).to.eql(req.salary*3);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"name\", \"Denis\");\r",
+							"pm.environment.set(\"age\", 33);\r",
+							"pm.environment.set(\"salary\", 1000)\r",
+							"\r",
+							"\r",
+							"for (i = 0; i < resp.salary.length; i++) {\r",
+							"    console.log(resp.salary[i])\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_4?name=Denis&age=33&salary=1000",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Denis"
+						},
+						{
+							"key": "age",
+							"value": "33"
+						},
+						{
+							"key": "salary",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let resp = pm.response.json();\r",
+							"   \r",
+							"let req = request.data\r",
+							"    \r",
+							"\r",
+							"pm.test(\"Check whether the parameter has start_qa_salary\", function () {\r",
+							"    pm.expect(resp).to.property(\"start_qa_salary\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check whether the parameter has qa_salary_after_6_months\", function () {\r",
+							"    pm.expect(resp).to.property(\"qa_salary_after_6_months\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check whether the parameter has qa_salary_after_12_months\", function () {\r",
+							"    pm.expect(resp).to.property(\"qa_salary_after_12_months\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check whether the parameter has qa_salary_after_1.5_year\", function () {\r",
+							"    pm.expect(resp).to.property(\"qa_salary_after_1.5_year\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check whether the parameter has person\", function () {\r",
+							"    pm.expect(resp).to.property(\"person\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check that the start_qa_salary parameter is equal to salary\", function () {\r",
+							"    pm.expect(resp.start_qa_salary).to.eql(+req.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the qa_salary_after_6_months parameter is equal to salary*2\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_6_months).to.eql(req.salary*2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the qa_salary_after_12_months parameter is equal to salary*2.7\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_12_months).to.eql(req.salary*2.7);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the qa_salary_after_1.5_year parameter is equal to salary*3.3\", function () {\r",
+							"    pm.expect(resp[\"qa_salary_after_1.5_year\"]).to.eql(req.salary*3.3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the qa_salary_after_3.5_years parameter is equal to salary*3.8\", function () {\r",
+							"    pm.expect(resp[\"qa_salary_after_3.5_years\"]).to.eql(req.salary*3.8);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check that in the person parameter, the 1st element from u_name is equal to salary\", function () {\r",
+							"    pm.expect(resp.person.u_name[1]).to.eql(+req.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the u_age parameter is equal to age\", function () {\r",
+							"    pm.expect(resp.person.u_age).to.eql(+req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that the u_salary_5_years parameter is equal to salary*4.2\", function () {\r",
+							"    pm.expect(resp.person.u_salary_5_years).to.eql(req.salary*4.2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_2"
 					]
 				}
 			},
